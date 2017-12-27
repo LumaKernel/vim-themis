@@ -1,0 +1,11 @@
+version: 2
+
+jobs:
+  build:
+    steps:
+      - checkout
+    test:
+      pre:
+        - vim --version
+      override:
+        - ./bin/themis --reporter dot
