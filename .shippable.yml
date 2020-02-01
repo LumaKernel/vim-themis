@@ -1,0 +1,27 @@
+language: none
+
+env:
+  - VIM_VERSION=latest
+  # - VIM_VERSION=v8.2.0000
+  # - VIM_VERSION=v8.1.0005
+
+build:
+  # pre_ci:
+  #   - pwd
+  #   - ls -la /home/shippable
+  pre_ci_boot:
+    image_name: drydock/u16pytall
+    image_tag: v7.2.4
+    pull: true
+    # options: "-e HOME=/root --privileged=true --net=bridge"
+  # pre_ci_boot:
+  #   image_name: thinca/vim
+  #   image_tag: ${VIM_VERSION}
+  #   pull: true
+  #   options: "-e HOME=/root --privileged=true --net=bridge"
+  ci:
+    - pwd
+    - ls -l /home/shippable/cexec
+    - cat /home/shippable/cexec/build.sh
+    - vim --version
+    - ./bin/themis --reporter dot
