@@ -19,15 +19,11 @@ if not exist "%STARTUP_SCRIPT%" (
 rem FIXME: Some wrong case exists in passing the argument list.
 rem DO NOT directly output the result to command prompt while 'normal' command in Vim script
 rem will move a cursor of command prompt in that case.
-set THEMIS_LOG="%TMP%\themis-%RANDOM%.log"
-echo themis will use %THEMIS_LOG%
+set THEMIS_LOG="%TMP%\themis.log"
 %THEMIS_VIM% -u NONE -i NONE -n -N %THEMIS_ARGS% --cmd "source %STARTUP_SCRIPT%" -- %* 2>&1 > %THEMIS_LOG%
 set THEMIS_ERRORLEVEL=%ERRORLEVEL%
-echo sleep 1s
 ping -n 1 127.0.0.1 > NUL
-echo themis will show %THEMIS_LOG%
 type %THEMIS_LOG%
-echo themis will delete %THEMIS_LOG%
 del %THEMIS_LOG%
 exit /b %THEMIS_ERRORLEVEL%
 
